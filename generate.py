@@ -1,10 +1,11 @@
+#-*- coding:utf-8 -*-
 import PIL
 from PIL import Image
 from PIL import ImageDraw
 from PIL import ImageFont
 
 
-font = ImageFont.truetype("/System/Library/Fonts/Arial.ttf", 24)
+font = ImageFont.truetype("/Users/yahui3/Downloads/pc6-40FreeMacFonts/40FreeMacFonts/Cavano.otf", 24)
 #打开图片
 imageFile = "./test.jpg"
 im = Image.open(imageFile)
