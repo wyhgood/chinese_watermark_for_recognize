@@ -17,11 +17,11 @@ print(type(image))
 print(len(image))
 
 
-fd, hog_image = hog(image, orientations=8, pixels_per_cell=(16, 16),
-                    cells_per_block=(1, 1), visualise=True)
+fd, hog_image = hog(image, orientations=9, pixels_per_cell=(16, 16),
+                    cells_per_block=(3, 3), visualise=True)
 
-print(len(hog_image[0]))
-print(hog_image[510])
+print(hog_image.shape)
+#print(hog_image[510])
 fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(8, 4), sharex=True, sharey=True)
 
 ax1.axis('off')
