@@ -3,7 +3,7 @@ import random
 import os
 
 #im = Image.open("daodao_crop.jpg")
-mark = Image.open("./tencent_logo_3.png")
+mark = Image.open("./oneday.png")
 
 for root, dirs, files in os.walk('./result/'):        
         for f in files:
