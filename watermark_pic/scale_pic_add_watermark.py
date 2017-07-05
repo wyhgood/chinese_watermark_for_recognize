@@ -13,19 +13,28 @@ from PIL import Image
 def add_watermark(pic_dir, watermark_path, save_dir):
     im = Image.open(watermark_path)
     width, height = im.size
+    i = 0
     for path, _, files in os.walk(pic_dir):
         for f_name in files:
+            i += 1
+            print(i)
             img_path = path+f_name
             im_tmp = Image.open(img_path)
             w, h = im_tmp.size
-            layer = Image.new('RGBA', im.size, (0,0,0,0))
-            #layer.show()                                                                                                                            
-            r1 = random.randint(int(-width/4), w-width+int(width/4))
-            r2 = random.randint(int(-height/4), h-height+int(height/4))                                     
+            layer = Image.new('RGBA', im_tmp.size, (0,0,0,0))
+            #layer.show()
+            #print(int(-width/4))
+            
+            r1 = random.randint(0, w-width)
+            r2 = random.randint(0, h-height)                                     
+            #r1 = random.randint(0, w-width)
+            #r2 = random.randint(0, w-height)
+            print(r1, r2)
             #layer.paste(im, (r1, r2))
-            layer.paste(im, (0, 0))
+            layer.paste(im, (r1, r2))
             out=Image.composite(layer, im_tmp, layer)
             out.save(save_dir+f_name)
+            out.close
 
 
 if __name__=='__main__':
