@@ -9,6 +9,7 @@
 '''
 
 import os
+import sys
 from PIL import Image
 
 
@@ -45,7 +46,7 @@ def split_pic(w, max_per_pic, img_path):
     return img_list
 
 
-def pic_generate(width, raw_pic_dir, save_dir, max_per_pic=10, total_number_per_scale=10000):
+def pic_generate(width, raw_pic_dir, save_dir, max_per_pic=10, total_number_per_scale=5000):
     scale_list = scale_generate(width)
     for scale in scale_list:
         print('current scale:'+str(scale))
@@ -54,9 +55,11 @@ def pic_generate(width, raw_pic_dir, save_dir, max_per_pic=10, total_number_per_
             for f_name in files:
                 c += 1
                 if c > total_number_per_scale: continue
+                print('current file:'+f_name + " file consumed number:"+str(c))
                 img_path = path+f_name
                 #拿到一张原始图片后
                 img_list = split_pic(width, max_per_pic, img_path)
+                print('generate pic number is:'+ str(len(img_list)))
                 i = 0
                 for im in img_list:
                     i += 1
@@ -67,7 +70,8 @@ if __name__=='__main__':
     print('-_-')
     l = scale_generate(10)
     print(l)
-    width = 50
-    raw_pic_dir = './download_pic/'
-    save_dir = './result_pic/'
-    pic_generate(width, raw_pic_dir, save_dir)
+    width = sys.argv[1]
+    raw_pic_dir = sys.argv[2]
+    save_dir = sys.argv[3]
+    print(width, raw_pic_dir, save_dir)
+    pic_generate(int(width), raw_pic_dir, save_dir)
